@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载图片</title>
+</head>
+<body>
+    <!-- 网页在渲染的时候，
+    http请求数量
+    chrome 性能最好，同时并发的请求数十几个
+    将图片下载 放到dom ready 事件之后 将
+    有效提升网页提升速度
+    占位图片，
+    优化前 n张图片 url 不一样 http请求数是 n 
+    优化后 图片上的http 数量只有 1
+    如果url 一样，不会重复发送 -->
+
+    <img 
+    class="pic1"
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525327929710&di=9aa2bd5e32164164df56390f0b71040a&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2439355652%2C1852440864%26fm%3D214%26gp%3D0.jpg" alt="">
+    <img 
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="http://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&cs=3588772980,2454248748&os=1031665791,326346256&simid=0,0&pn=0&rn=1&di=97948933610&ln=1981&fr=&fmq=1525417832853_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0142135541fe180000019ae9b8cf86.jpg%401280w_1l_2o_100sh.png&rpstart=0&rpnum=0&adpicid=0" alt="">
+    <img 
+    src="http://static.youku.com/yk/vmanage/img/manage/video/mask.d53611efc6.png"
+    origin_src="http://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&cs=2249893882,1165836821&os=2203774813,3758473366&simid=4236599532,754691173&pn=11&rn=1&di=205081725090&ln=1981&fr=&fmq=1525417832853_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fimg03.tooopen.com%2Fuploadfile%2Fdowns%2Fimages%2F20110714%2Fsy_20110714135215645030.jpg&rpstart=0&rpnum=0&adpicid=0" alt="">
+    <script src="lazyload.js"></script>
+    <script>
+    // 已经是用户看到了网页了， dom  ready 
+    // 优化图片下载，将其推后
+    window.onload=function(){
+        
+        // 懒加载图片
+        // // 在页面打开后，重新下载图片
+         const img=document.querySelector('.pic1');
+        // // origin_src 自定义属性
+        // const url=img.getAttribute('origin_src');
+        // console.log(url);
+        // // img.src=url;
+        // // 图片不要直接url 设置过去，太那啥。。。
+        // const oImg=document.createElement('img');
+        // oImg.style.display='none';
+        // document.body.appendChild(oImg);
+
+        // oImg.onload=function(){
+        //     // 幕后工作者 已经下载了图片
+        //     // url 一旦下载，在浏览器缓（静态）文件
+        //     img.src=url;
+        // }
+        // // 图片的下载是异步，图片有大小
+        // oImg.src=url;
+        // // img.setAttribute('src',url);
+        LazyLoadImage.setSrc(img);
+    }
+        
+    </script>
+</body>
+</html>
