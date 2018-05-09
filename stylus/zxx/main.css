@@ -1,0 +1,10 @@
+.box {
+  background-color: #12ef56;
+  width: 100px;
+  height: 100px;
+  boder-radius: 5px;
+  -webkit-box-shadow: 1 1 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1 1 10px rgba(0,0,0,0.5);
+  -ms-box-shadow: 1 1 10px rgba(0,0,0,0.5);
+  box-shadow: 1 1 10px rgba(0,0,0,0.5);
+}
